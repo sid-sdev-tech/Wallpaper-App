@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -146,9 +148,26 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 itemCount: AppConstant.mColors.length,
                 itemBuilder: (_,index){
+                  log(AppConstant.mColors[index]['code'].toString());
                   return Padding(
                     padding:  EdgeInsets.only(left:7,right: index == AppConstant.mColors.length-1?11: 0),
-                    child: getColorToneWidget(AppConstant.mColors[index])
+                    child: InkWell(
+                        onTap: (){
+                          Navigator.push(
+                              context, MaterialPageRoute(
+                              builder:  (context)=> BlocProvider(
+                                create: (context)=> SearchCubit(
+                                    wallPaperRepository: WallPaperRepository(
+                                        apiHelper: ApiHelper())),
+                                child: SearchedWallPaperPage(
+                                  query:  "nature",
+                                color: "ffffff"
+                                ///AppConstant.mColors[index]['code'].toString()
+                                ),
+///ffffff
+                              )));
+                        },
+                        child: getColorToneWidget(AppConstant.mColors[index]['color']))
                   );
                 }),
           ),
@@ -177,9 +196,22 @@ class _HomePageState extends State<HomePage> {
               ),
                 itemCount: AppConstant.mCategories.length,
                 itemBuilder: (_,index){
-                  return getCategoryWidget(
-                      AppConstant.mCategories[index]['image'],
-                      AppConstant.mCategories[index]['title']);
+                  return InkWell(
+                    onTap: (){
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder:  (context)=> BlocProvider(
+                              create: (context)=> SearchCubit(
+                              wallPaperRepository: WallPaperRepository(
+                              apiHelper: ApiHelper())),
+                            child: SearchedWallPaperPage(
+                              query: AppConstant.mCategories[index]['title'],),
+                          )));
+                    },
+                    child: getCategoryWidget(
+                        AppConstant.mCategories[index]['image'],
+                        AppConstant.mCategories[index]['title']),
+                  );
                 }),
           ),
         ],

@@ -48,3 +48,14 @@ TextStyle mTextStyle25(
       fontFamily: "mainFont"
   );
 }
+
+TextStyle mTextStyle34(
+    {Color mColor = Colors.black,
+      mFontWeight = FontWeight.normal }) {
+  return TextStyle(
+      fontSize: 34,
+      fontWeight: mFontWeight,
+      color: mColor,
+      fontFamily: "mainFont"
+  );
+}

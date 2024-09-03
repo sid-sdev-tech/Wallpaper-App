@@ -10,12 +10,12 @@ class SearchCubit extends Cubit<SearchState>{
   WallPaperRepository wallPaperRepository;
   SearchCubit({required this.wallPaperRepository}):  super(SearchInitialState());
 
-  void getSearchWallpaper({ required String query}) async{
+  void getSearchWallpaper({ required String query,String color = ""}) async{
     
     emit(SearchLoadingState());
 
     try{
-      var mData = await wallPaperRepository.getSearchWallPapers(query);
+      var mData = await wallPaperRepository.getSearchWallPapers(query,mColor: color );
       WallpaperDataModel wallpaperDataModel = WallpaperDataModel.fromJson(mData);
       emit(SearchLoadedState(listPhotos: wallpaperDataModel.photos!,totalWallpapers: wallpaperDataModel.total_results!));
     }catch(e){

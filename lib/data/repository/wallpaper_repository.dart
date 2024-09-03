@@ -8,10 +8,10 @@ class WallPaperRepository{
   WallPaperRepository({required this.apiHelper});
 
   //Search
-  Future<dynamic> getSearchWallPapers(String mQuery) async{
+  Future<dynamic> getSearchWallPapers(String mQuery, {String mColor = ""}) async{
     try {
-      log( "this is wallpaper repo ${apiHelper.getAPI(url: "${AppUrls.SEARCH_WALL_URL}?query=mQuery")}");
-      return await apiHelper.getAPI(url: "${AppUrls.SEARCH_WALL_URL}?query=mQuery");
+      // log( "this is wallpaper search url ${AppUrls.SEARCH_WALL_URL}?query=$mQuery&color = $mColor");
+      return await apiHelper.getAPI(url: "${AppUrls.SEARCH_WALL_URL}?query=$mQuery&color = $mColor");
     }catch(e){
       throw(e);
     }

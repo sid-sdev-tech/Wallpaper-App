@@ -7,7 +7,8 @@ import 'package:wallpapers/utils/util_helper.dart';
 
 class SearchedWallPaperPage extends StatefulWidget {
   String query;
-  SearchedWallPaperPage({required this.query});
+  String color;
+  SearchedWallPaperPage({super.key, required this.query, this.color = ""});
 
   @override
   State<SearchedWallPaperPage> createState() => _SearchedWallPaperPageState();
@@ -18,7 +19,7 @@ class _SearchedWallPaperPageState extends State<SearchedWallPaperPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<SearchCubit>(context).getSearchWallpaper(query: widget.query);
+    BlocProvider.of<SearchCubit>(context).getSearchWallpaper(query: widget.query,color: widget.color);
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,18 +36,21 @@ class _SearchedWallPaperPageState extends State<SearchedWallPaperPage> {
             );
           } else if(state is SearchLoadedState){
             return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 27),
+              child: ListView(
                 children: [
                   SizedBox(
-                    height: 25,
+                    height: 40,
                   ),
-                  Text(widget.query,style: mTextStyle25(mFontWeight: FontWeight.w900),),
+                  Text(widget.query,style: mTextStyle34(mFontWeight: FontWeight.w900),),
                   Text("${state.totalWallpapers} wallpapers available",style: mTextStyle14(),),
-                  Expanded(child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
                     child: GridView.builder(
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisSpacing: 11,
@@ -56,9 +60,12 @@ class _SearchedWallPaperPageState extends State<SearchedWallPaperPage> {
                         itemCount: state.listPhotos.length,
                         itemBuilder: (_,index){
                           var eachPhoto = state.listPhotos[index];
-                          return WallPaperBgWidget(imgUrl: eachPhoto.src!.portrait!);
+                          return Padding(
+                            padding:  EdgeInsets.only(bottom: index == state.listPhotos.length-1 ?  11.0 : 0),
+                            child: WallPaperBgWidget(imgUrl: eachPhoto.src!.portrait!),
+                          );
                         }),
-                  ))
+                  )
                 ],
               ),
             );

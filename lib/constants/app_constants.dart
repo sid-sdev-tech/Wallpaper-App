@@ -3,25 +3,67 @@ import 'dart:ui';
 class AppConstant{
   static const String PEXELS_API_KEY = "3gQaU5o4D1QiCI0bgbshTiJxS1XDjzNsQ3oayUEqWdm4ywqCjLSc2uYN";
 
-  static const List<Color> mColors = [
-
-    Color(0xffffffff),
-    Color(0xff4264e0),
-    Color(0xffFFD700),
-    Color(0xff6141e1),
-    Color(0xff60bfc1),
-    Color(0xffff9b0b),
-    Color(0xff009688),
-    Color(0xff4CAF50),
-    Color(0xFFF44336),
-    Color(0xffb646ea),
-    Color(0xff9400D3),
-    Color(0xffffff00),
-    Color(0xff795548),
-    Color(0xffFFEB3B),
-    Color(0xfffdb7b9),
-
-
+  static const List<Map<String,dynamic>> mColors = [
+    {
+      'color' : Color(0xffffffff),
+      'code' : 'ffffff',
+    },
+    {
+      'color' :  Color(0xff4264e0),
+      'code' : '4264e0',
+    },
+    {
+      'color' : Color(0xffFFD700),
+      'code' : 'FFD700',
+    },
+    {
+      'color' : Color(0xff6141e1),
+      'code' : '6141e1',
+    },
+    {
+      'color' : Color(0xff60bfc1),
+      'code' : '60bfc1',
+    },
+    {
+      'color' : Color(0xffff9b0b),
+      'code' : 'ff9b0b',
+    },
+    {
+      'color' : Color(0xff009688),
+      'code' : '009688',
+    },
+    {
+      'color' :  Color(0xff4CAF50),
+      'code' : '4CAF50',
+    },
+    {
+      'color' : Color(0xFFF44336),
+      'code' : 'F44336',
+    },
+    {
+      'color' :  Color(0xffb646ea),
+      'code' : 'b646ea',
+    },
+    {
+      'color' :  Color(0xff9400D3),
+      'code' : '9400D3',
+    },
+    {
+      'color' : Color(0xffffff00),
+      'code' : 'ffff00',
+    },
+    {
+      'color' : Color(0xff795548),
+      'code' : '795548',
+    },
+    {
+      'color' :  Color(0xffFFEB3B),
+      'code' : 'FFEB3B',
+    },
+    {
+      'color' : Color(0xfffdb7b9),
+      'code' : 'fdb7b9',
+    },
 
   ];
 
