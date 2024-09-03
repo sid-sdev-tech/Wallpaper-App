@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -148,7 +146,6 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 itemCount: AppConstant.mColors.length,
                 itemBuilder: (_,index){
-                  log(AppConstant.mColors[index]['code'].toString());
                   return Padding(
                     padding:  EdgeInsets.only(left:7,right: index == AppConstant.mColors.length-1?11: 0),
                     child: InkWell(
@@ -160,11 +157,8 @@ class _HomePageState extends State<HomePage> {
                                     wallPaperRepository: WallPaperRepository(
                                         apiHelper: ApiHelper())),
                                 child: SearchedWallPaperPage(
-                                  query:  "nature",
-                                color: "ffffff"
-                                ///AppConstant.mColors[index]['code'].toString()
-                                ),
-///ffffff
+                                  query: searchController.text.isNotEmpty ? searchController.text : "Nature",
+                                color: AppConstant.mColors[index]['code']),
                               )));
                         },
                         child: getColorToneWidget(AppConstant.mColors[index]['color']))
