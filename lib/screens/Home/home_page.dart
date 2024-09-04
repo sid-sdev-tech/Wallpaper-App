@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallpapers/app_widgets/wallpaper_bg_widget.dart';
 import 'package:wallpapers/data/remote/api_helper.dart';
 import 'package:wallpapers/data/repository/wallpaper_repository.dart';
+import 'package:wallpapers/screens/detail_wallpaper_page.dart';
 import 'package:wallpapers/screens/search/cubit/search_cubit.dart';
 import 'package:wallpapers/screens/search/searched_wallpaper_page.dart';
 import 'package:wallpapers/utils/util_helper.dart';
@@ -120,7 +121,11 @@ class _HomePageState extends State<HomePage> {
 
                         return Padding(
                           padding:  EdgeInsets.only(left: 11,right: index == state.listPhotos.length-1?11: 0),
-                          child: WallPaperBgWidget(imgUrl: eachPhoto.src!.portrait!),
+                          child: InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailWallpaperPage(imgModel: eachPhoto.src!,),));
+                              },
+                              child: WallPaperBgWidget(imgUrl: eachPhoto.src!.portrait!)),
                         );
                       });
                 }
